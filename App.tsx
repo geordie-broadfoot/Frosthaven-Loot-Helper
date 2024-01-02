@@ -1,15 +1,15 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
-import * as stuff from "./consts/cards"
+import { RESOURCE, ResourceNames } from "./consts/resources"
+import { getEnumKeys } from "./utils/enums"
 
 export default function App() {
 	return (
 		<View style={styles.container}>
 			<Text>Open up App.js to start working on your apps! </Text>
-			{Object.entries(stuff.nameMaps).map(([k, v]) => (
-				<Text>
-					{k} {" -> "}
-					{v}
+			{getEnumKeys(RESOURCE).map((key) => (
+				<Text key={key}>
+					{key} {"->"} {ResourceNames[key]}
 				</Text>
 			))}
 			<StatusBar style="auto" />
