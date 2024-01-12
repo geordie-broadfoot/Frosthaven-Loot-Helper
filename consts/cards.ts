@@ -1,19 +1,61 @@
 import { RESOURCE } from "./resources"
+import { LootCard } from "./types"
 
-export type LootCard = {
-	// Card id for reference
-	id: number
-	// Resource type
-	type: RESOURCE
-
-	// Allow mapping of player count to resource value
-	value: {
-		[index: number]: number
-	}
-	special?: boolean
-}
-
-const defaultResourceCards = [
+const defaultResourceCards: LootCard[] = [
+	{
+		id: -1,
+		type: RESOURCE.logs,
+		value: {
+			2: 2,
+			3: 2,
+			4: 1,
+		},
+	},
+	{
+		id: -1,
+		type: RESOURCE.logs,
+		value: {
+			2: 2,
+			3: 2,
+			4: 1,
+		},
+	},
+	{
+		id: -1,
+		type: RESOURCE.logs,
+		value: {
+			2: 2,
+			3: 2,
+			4: 1,
+		},
+	},
+	{
+		id: -1,
+		type: RESOURCE.logs,
+		value: {
+			2: 2,
+			3: 1,
+			4: 1,
+		},
+	},
+	{
+		id: -1,
+		type: RESOURCE.logs,
+		value: {
+			2: 2,
+			3: 1,
+			4: 1,
+		},
+	},
+	{
+		id: -1,
+		type: RESOURCE.logs,
+		value: {
+			2: 2,
+			3: 1,
+			4: 1,
+		},
+	},
 	{
 		id: -1,
 		type: RESOURCE.logs,
@@ -28,60 +70,6 @@ const defaultResourceCards = [
 		type: RESOURCE.logs,
 		value: {
 			2: 1,
-			3: 1,
-			4: 1,
-		},
-	},
-	{
-		id: -1,
-		type: RESOURCE.logs,
-		value: {
-			2: 2,
-			3: 2,
-			4: 1,
-		},
-	},
-	{
-		id: -1,
-		type: RESOURCE.logs,
-		value: {
-			2: 2,
-			3: 2,
-			4: 1,
-		},
-	},
-	{
-		id: -1,
-		type: RESOURCE.logs,
-		value: {
-			2: 2,
-			3: 2,
-			4: 1,
-		},
-	},
-	{
-		id: -1,
-		type: RESOURCE.logs,
-		value: {
-			2: 2,
-			3: 1,
-			4: 1,
-		},
-	},
-	{
-		id: -1,
-		type: RESOURCE.logs,
-		value: {
-			2: 2,
-			3: 1,
-			4: 1,
-		},
-	},
-	{
-		id: -1,
-		type: RESOURCE.logs,
-		value: {
-			2: 2,
 			3: 1,
 			4: 1,
 		},
@@ -111,47 +99,81 @@ const generateHerbCard = (id: number, type: RESOURCE): LootCard => ({
 
 const goldCards: LootCard[] = [
 	// 12 x 1-coin cards
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
-	generateGoldCard(-1, 1),
+	generateGoldCard(1361, 1),
+	generateGoldCard(1362, 1),
+	generateGoldCard(1363, 1),
+	generateGoldCard(1364, 1),
+	generateGoldCard(1365, 1),
+	generateGoldCard(1366, 1),
+	generateGoldCard(1367, 1),
+	generateGoldCard(1368, 1),
+	generateGoldCard(1369, 1),
+	generateGoldCard(1370, 1),
+	generateGoldCard(1371, 1),
+	generateGoldCard(1372, 1),
 	// 6 x 2-coin cards
-	generateGoldCard(-1, 2),
-	generateGoldCard(-1, 2),
-	generateGoldCard(-1, 2),
-	generateGoldCard(-1, 2),
-	generateGoldCard(-1, 2),
-	generateGoldCard(-1, 2),
+	generateGoldCard(1373, 2),
+	generateGoldCard(1374, 2),
+	generateGoldCard(1375, 2),
+	generateGoldCard(1376, 2),
+	generateGoldCard(1377, 2),
+	generateGoldCard(1378, 2),
 	// 2 x 3-coin cards
-	generateGoldCard(-1, 3),
-	generateGoldCard(-1, 3),
+	generateGoldCard(1379, 3),
+	generateGoldCard(1380, 3),
 	// 2 x Special cards
 	generateGoldCard(1418, 1, true),
 	generateGoldCard(1419, 1, true),
 ]
 
+const lumberIndex = 1401
+const metalIndex = 1409
+const hideIndex = 1393
+
 export const ALL_LOOT_CARDS = {
 	[RESOURCE.gold]: goldCards,
-	[RESOURCE.logs]: defaultResourceCards.map((c) => ({ ...c, type: RESOURCE.logs })),
-	[RESOURCE.metal]: defaultResourceCards.map((c) => ({ ...c, type: RESOURCE.metal })),
-	[RESOURCE.furs]: defaultResourceCards.map((c) => ({ ...c, type: RESOURCE.furs })),
-	[RESOURCE.arrowvine]: [generateHerbCard(-1, RESOURCE.arrowvine), generateHerbCard(-1, RESOURCE.arrowvine)],
-	[RESOURCE.axenut]: [generateHerbCard(-1, RESOURCE.axenut), generateHerbCard(-1, RESOURCE.axenut)],
-	[RESOURCE.corpsecap]: [generateHerbCard(-1, RESOURCE.corpsecap), generateHerbCard(-1, RESOURCE.corpsecap)],
-	[RESOURCE.flamefruit]: [generateHerbCard(-1, RESOURCE.flamefruit), generateHerbCard(-1, RESOURCE.flamefruit)],
-	[RESOURCE.rockroot]: [generateHerbCard(-1, RESOURCE.rockroot), generateHerbCard(-1, RESOURCE.rockroot)],
-	[RESOURCE.snowthistle]: [generateHerbCard(-1, RESOURCE.snowthistle), generateHerbCard(-1, RESOURCE.snowthistle)],
+	[RESOURCE.logs]: defaultResourceCards.map((c, i) => ({
+		...c,
+		type: RESOURCE.logs,
+		id: lumberIndex + i,
+	})),
+	[RESOURCE.metal]: defaultResourceCards.map((c, i) => ({
+		...c,
+		type: RESOURCE.metal,
+		id: metalIndex + i,
+	})),
+	[RESOURCE.furs]: defaultResourceCards.map((c, i) => ({
+		...c,
+		type: RESOURCE.furs,
+		id: hideIndex + i,
+	})),
+	[RESOURCE.arrowvine]: [
+		generateHerbCard(1381, RESOURCE.arrowvine),
+		generateHerbCard(1382, RESOURCE.arrowvine),
+	],
+	[RESOURCE.axenut]: [
+		generateHerbCard(1383, RESOURCE.axenut),
+		generateHerbCard(1384, RESOURCE.axenut),
+	],
+	[RESOURCE.corpsecap]: [
+		generateHerbCard(1385, RESOURCE.corpsecap),
+		generateHerbCard(1386, RESOURCE.corpsecap),
+	],
+	[RESOURCE.flamefruit]: [
+		generateHerbCard(1387, RESOURCE.flamefruit),
+		generateHerbCard(1388, RESOURCE.flamefruit),
+	],
+	[RESOURCE.rockroot]: [
+		generateHerbCard(1389, RESOURCE.rockroot),
+		generateHerbCard(1390, RESOURCE.rockroot),
+	],
+	[RESOURCE.snowthistle]: [
+		generateHerbCard(1391, RESOURCE.snowthistle),
+		generateHerbCard(1392, RESOURCE.snowthistle),
+	],
 	[RESOURCE.randomItem]: [
 		{
-			id: -1,
+			id: 1417,
 			type: RESOURCE.randomItem,
 			value: { 2: 1, 3: 1, 4: 1 },
 		},

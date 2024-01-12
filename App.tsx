@@ -1,27 +1,22 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
-import { RESOURCE, ResourceNames } from "./consts/resources"
-import { getEnumKeys } from "./utils/enums"
+import { Button, StyleSheet, View } from "react-native"
+import { AppContext } from "./context/AppContext"
+import { HomeScreen } from "./components/homeScreen/homeScreen"
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<Text>Open up App.js to start working on your apps! </Text>
-			{getEnumKeys(RESOURCE).map((key) => (
-				<Text key={key}>
-					{key} {"->"} {ResourceNames[key]}
-				</Text>
-			))}
-			<StatusBar style="auto" />
-		</View>
+		<AppContext>
+			<View style={styles.container}>
+				<StatusBar style="auto" />
+				<HomeScreen />
+			</View>
+		</AppContext>
 	)
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
+		backgroundColor: "hsl(190, 100%, 94%)",
+		height: "100%",
 	},
 })
