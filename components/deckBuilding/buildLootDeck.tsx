@@ -11,8 +11,8 @@ export const BuildLootDeck = () => {
 
 	return (
 		<Col alignContent="center" alignItems="center">
-			<Txt xl>Build Loot Deck!</Txt>
-			<Txt sm>
+			<Txt xxl>Build Loot Deck</Txt>
+			<Txt md>
 				Total loot:{" "}
 				{Object.values(state.lootDeck.composition).reduce((sum, v) => sum + v, 0)}
 			</Txt>
@@ -45,8 +45,9 @@ export const BuildLootDeck = () => {
 							}}
 							min={0}
 							max={maxNumber}
-							color={state.options.colorCodeLootCards ? CardColors[type] : undefined}
-							borderWidth={state.options.colorCodeLootCards ? 3 : 1}
+							//color={state.options.colorCodeLootCards ? CardColors[type] : undefined}
+							//borderWidth={state.options.colorCodeLootCards ? 3 : 1}
+							borderWidth={1}
 							disabled={state.lootDeck.cards.length !== 0}
 						/>
 					)

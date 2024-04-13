@@ -1,4 +1,4 @@
-import { Button, Col, Row, Txt } from "../elements"
+import { Button, Col, MainContent, Row, Txt } from "../elements"
 import { useAppState } from "../../context/AppContext"
 import { LootTokensScreen } from "./lootTokens"
 import { NoDeckWarning } from "./noDeckWarning"
@@ -44,38 +44,49 @@ export const LootScreen = () => {
 	}
 
 	return (
-		<Col alignItems="stretch" flexGrow={1} width="100%">
-			{state.screen === "loot" ? (
-				<Col alignItems="center" gap={50} flexGrow={1}>
-					<LootTokensScreen />
-					<NoDeckWarning />
-					<Button onClick={handleDrawLoot}>
-						<Txt md>Draw Loot</Txt>
-					</Button>
+		<>
+			<MainContent>
+				<Col alignItems="stretch" flexGrow={1} width="100%">
+					{state.screen === "loot" ? (
+						<Col alignItems="center" gap={30} flexGrow={1}>
+							<LootTokensScreen />
+							<NoDeckWarning />
+							<Button
+								onClick={handleDrawLoot}
+								disabled={state.lootDeck.cards.length == 0}
+							>
+								<Txt md>Draw Loot</Txt>
+							</Button>
+						</Col>
+					) : (
+						<LootResults />
+					)}
 				</Col>
-			) : (
-				<Col alignItems="center" justifyContent="space-between" height="100%">
-					<LootResults />
-					<Row
-						width="100%"
-						alignItems="center"
-						justifyContent="space-evenly"
-						backgroundColor="hsla(0, 10%, 30%, 0.3)"
+			</MainContent>
+			{state.screen === "loot_result" && (
+				<Row
+					width="100%"
+					alignItems="center"
+					justifyContent="space-evenly"
+					marginTop={3}
+					paddingTop={10}
+					marginBottom={10}
+					borderTopWidth={1}
+				>
+					<Button
+						onClick={() => {
+							dispatch(Actions.setScreen("loot"))
+							for (let p of state.players)
+								dispatch(Actions.updatePlayer(p.id, "cards", []))
+						}}
 					>
-						<Button
-							onClick={() => {
-								dispatch(Actions.setScreen("loot"))
-								for (let p of state.players)
-									dispatch(Actions.updatePlayer(p.id, "cards", []))
-							}}
-						>
-							<Icon.FontAwesome name="undo" size={18} />
-						</Button>
-						<Toggle name="showIndividualLootCards" title="Group loot" invert />
-						<Toggle name="showUndrawnLoot" title="Show undrawn" />
-					</Row>
-				</Col>
+						<Icon.FontAwesome5 name="dice" size={18} />
+						<Txt xxs>Reroll</Txt>
+					</Button>
+					<Toggle name="showIndividualLootCards" title="Group loot" invert />
+					<Toggle name="showUndrawnLoot" title="Show undrawn" />
+				</Row>
 			)}
-		</Col>
+		</>
 	)
 }

@@ -9,13 +9,13 @@ export const LootResults = () => {
 	const { state } = useAppState()
 
 	return (
-		<Col width="90%" alignItems="center" flexGrow={1}>
-			<Txt xl marginBottom={20}>
-				Loot Results!
+		<Col width="100%" alignItems="center" flexGrow={1}>
+			<Txt xxl marginBottom={20}>
+				Loot Results
 			</Txt>
-			<Row alignItems="flex-start" width="80%" marginBottom={5}>
-				<Txt xxs>Tap to collapse</Txt>
-			</Row>
+			{/* <Row alignItems="flex-start" width="80%" marginBottom={5}>
+				<Txt xs>Tap to collapse</Txt>
+			</Row> */}
 			<Col width="90%" alignItems="stretch" gap={20}>
 				{state.players.map((player) => {
 					return <LootRow key={player.id} cards={player.cards} name={player.name} />
@@ -47,7 +47,8 @@ const LootRow = ({ name, cards }: LootRowProps) => {
 				width="auto"
 				justifyContent="space-between"
 				alignItems="center"
-				backgroundColor="hsl(180, 20%, 70%)"
+				backgroundColor="hsl(180, 20%, 90%)"
+				borderBottomWidth={2}
 				borderRadius={10}
 				padding={1}
 				paddingHorizontal={20}
@@ -57,7 +58,7 @@ const LootRow = ({ name, cards }: LootRowProps) => {
 					{cards.length} loot card{cards.length !== 1 && "s"}
 				</Txt>
 			</Row>
-			{expanded && <LootSummary cards={cards} />}
+			{<LootSummary cards={cards} />}
 		</Col>
 	)
 }

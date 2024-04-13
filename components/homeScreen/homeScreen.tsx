@@ -34,6 +34,7 @@ export const HomeScreen = () => {
 			paddingTop={40}
 			padding={0}
 			flexGrow={1}
+			maxHeight={"100%"}
 			alignItems="center"
 			justifyContent="space-between"
 		>
@@ -41,18 +42,7 @@ export const HomeScreen = () => {
 				<SplashScreen />
 			) : (
 				<>
-					<ScrollView
-						contentContainerStyle={{
-							alignItems: "center",
-						}}
-						style={{
-							height: "90%",
-							width: "100%",
-							borderWidth: 1,
-						}}
-					>
-						{getScreen()}
-					</ScrollView>
+					{getScreen()}
 					<NavBar />
 				</>
 			)}

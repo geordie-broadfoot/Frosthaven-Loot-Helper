@@ -10,8 +10,8 @@ export const LootTokensScreen = () => {
 	const totalLoot = state.players.reduce((sum, p) => sum + p.tokens, 0)
 
 	return (
-		<Col marginTop={40} gap={15} alignItems="center" paddingHorizontal={10}>
-			<Txt lg>Loot Tokens Collected</Txt>
+		<Col gap={15} alignItems="center" paddingHorizontal={10}>
+			<Txt xxl>Loot Tokens</Txt>
 			<Txt sm>Loot available: {availableLoot - totalLoot}</Txt>
 			{state.players.map((player) => {
 				return (

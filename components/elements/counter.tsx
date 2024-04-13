@@ -32,7 +32,7 @@ export const Counter = ({
 	return (
 		<Col
 			alignContent="stretch"
-			backgroundColor={"#aaa"}
+			backgroundColor={"#ccc"}
 			padding={5}
 			borderRadius={10}
 			borderWidth={borderWidth || 1}
@@ -53,7 +53,7 @@ export const Counter = ({
 				<Icon.Feather
 					name="plus"
 					disabled={count >= max}
-					color={count >= max || disabled ? "grey" : "hsl(140, 90%, 60%)"}
+					color={count >= max || disabled ? "grey" : "hsl(140, 90%, 40%)"}
 					size={btnSize}
 					onPress={() => !disabled && onCountUp()}
 				/>

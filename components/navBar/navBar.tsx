@@ -18,7 +18,6 @@ export const NavBar = () => {
 			<Col
 				alignItems="center"
 				flexGrow={1}
-				backgroundColor="hsl(40, 10%, 90%)"
 				onClick={() => {
 					onClick?.()
 					dispatch(Actions.setScreen(name))
@@ -30,9 +29,9 @@ export const NavBar = () => {
 		)
 	}
 
-	const iconSize = 26
+	const iconSize = 40
 	return (
-		<Row height={80} alignItems="stretch" width="100%" borderTopWidth={2}>
+		<Row height={80} alignItems="stretch" width="100%">
 			<NavButton
 				title="Players"
 				name="players"
@@ -63,7 +62,7 @@ export const NavBar = () => {
 				icon={
 					<Container justifyContent="center" alignItems="center">
 						<Icon.MaterialCommunityIcons name="treasure-chest" size={iconSize} />
-						{state.players[0].cards.length > 0 && (
+						{state.players.some((p) => p.cards.length > 0) && (
 							<Icon.Feather
 								name="check"
 								color="hsl(120, 100%, 40%)"
