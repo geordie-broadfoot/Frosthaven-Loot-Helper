@@ -26,7 +26,7 @@ export const BuildDeckScreen = () => {
 							Object.keys(ALL_LOOT_CARDS).forEach((type) =>
 								dispatch(Actions.updateLootDeckComposition(type, 0)),
 							)
-							dispatch(Actions.setLootDeckCards([]))
+							dispatch(Actions.resetLootDeck())
 							for (let p of state.players) {
 								dispatch(Actions.updatePlayer(p.id, "cards", []))
 								dispatch(Actions.updatePlayer(p.id, "tokens", 0))

@@ -24,6 +24,7 @@ export const appReducer = (oldState: AppState, action: AppStateAction): AppState
 		case "reset_loot_deck":
 			state = {
 				...defaultAppState,
+				screen: "deck",
 				players: state.players,
 				options: state.options,
 			}

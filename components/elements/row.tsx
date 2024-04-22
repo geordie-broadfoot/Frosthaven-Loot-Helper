@@ -10,7 +10,7 @@ type Props = FlexStyle & {
 
 export const Row = (props: Props) => {
 	return (
-		<Container flexDirection="row" {...props}>
+		<Container display="flex" flexDirection="row" {...props}>
 			{props.children}
 		</Container>
 	)

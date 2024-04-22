@@ -41,6 +41,7 @@ export const Txt = (props: Props) => {
 				fontWeight: props.fontWeight,
 				fontStyle: props.fontStyle,
 				color: props.color,
+				textAlign: props.textAlign,
 			}}
 			{...props}
 		>

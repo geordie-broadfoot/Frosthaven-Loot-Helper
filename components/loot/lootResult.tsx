@@ -72,43 +72,65 @@ const LootSummary = ({ cards }: SummaryProps) => {
 
 	return (
 		<Col width="auto" justifyContent="space-around" alignItems="center">
-			<Row flexWrap="wrap" gap={2} width="90%" paddingTop={2}>
-				{state.options.showIndividualLootCards
-					? cards.map((card) => (
-							<LootResultCard
-								key={card.id}
-								type={card.type}
-								id={card.id}
-								value={card.value[state.players.length]}
-							/>
-					  ))
-					: Object.entries(
-							cards.reduce((res, card) => {
-								if (!card) return res
+			{state.options.useBasicMode ? (
+				<Row flexWrap="wrap" gap={15} width="90%">
+					{Object.entries(
+						cards.reduce((res, card) => {
+							if (!res[card.type])
+								res[card.type] = {
+									count: 0,
+									ids: [],
+									result: 0,
+								}
 
-								if (!res[card.type])
-									res[card.type] = {
-										count: 0,
-										ids: [],
-										result: 0,
-									}
-
-								res[card.type].count++
-								res[card.type].ids.push(card.id)
-								res[card.type].result += card.value[state.players.length]
-								return res
-							}, {}),
-					  ).map(([type, output]: any) => {
-							return (
+							res[card.type].count++
+							res[card.type].ids.push(card.id)
+							res[card.type].result += card.value[state.players.length]
+							return res
+						}, {}),
+					).map(([type, output]: any) => (
+						<Txt sm key={type}>
+							{output.result} {ResourceNames[type]}
+						</Txt>
+					))}
+				</Row>
+			) : (
+				<Row flexWrap="wrap" gap={2} width="90%" paddingTop={2}>
+					{state.options.showIndividualLootCards
+						? cards.map((card) => (
 								<LootResultCard
-									key={type}
-									type={type}
-									value={output.result}
-									ids={output.ids}
+									key={card.id}
+									type={card.type}
+									id={card.id}
+									value={card.value[state.players.length]}
 								/>
-							)
-					  })}
-			</Row>
+						  ))
+						: Object.entries(
+								cards.reduce((res, card) => {
+									if (!res[card.type])
+										res[card.type] = {
+											count: 0,
+											ids: [],
+											result: 0,
+										}
+
+									res[card.type].count++
+									res[card.type].ids.push(card.id)
+									res[card.type].result += card.value[state.players.length]
+									return res
+								}, {}),
+						  ).map(([type, output]: any) => {
+								return (
+									<LootResultCard
+										key={type}
+										type={type}
+										value={output.result}
+										ids={output.ids}
+									/>
+								)
+						  })}
+				</Row>
+			)}
 		</Col>
 	)
 }

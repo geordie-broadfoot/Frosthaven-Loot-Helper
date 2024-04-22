@@ -1,36 +1,34 @@
 {
-  "expo": {
-    "name": "Frosthaven Loot Helper",
-    "slug": "frosthaven-loot-helper",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.geodude.frosthavenloothelper"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "07cc9453-5dd7-4a5c-8c54-3aa57501057b"
-      }
-    },
-    "owner": "geodude"
-  }
+	"expo": {
+		"name": "Frosthaven Loot Helper",
+		"slug": "frosthaven-loot-helper",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.geodude.frosthavenloothelper"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "07cc9453-5dd7-4a5c-8c54-3aa57501057b"
+			}
+		},
+		"owner": "geodude"
+	}
 }

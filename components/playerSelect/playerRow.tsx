@@ -7,8 +7,12 @@ import { useRef, useState } from "react"
 import { TextInput } from "react-native"
 import { FontSizes } from "../elements/txt"
 
-export const PlayerRow = ({ player, index }) => {
-	const [editing, setEditing] = useState(false)
+type Props = {
+	player: Player
+	index: number
+}
+
+export const PlayerRow = ({ player, index }: Props) => {
 	const [nickname, setNickname] = useState(player.name)
 
 	const { state, dispatch } = useAppState()
@@ -26,12 +30,9 @@ export const PlayerRow = ({ player, index }) => {
 				}}
 				defaultValue={player.name}
 				onChangeText={(text) => setNickname(text)}
-				onEndEditing={() => {
-					setEditing(false)
+				onChange={() => {
 					dispatch(Actions.setNickname(player.id, nickname))
 				}}
-				onFocus={() => setEditing(true)}
-				onBlur={() => setEditing(false)}
 				selectTextOnFocus
 			/>
 			{index >= 2 && (

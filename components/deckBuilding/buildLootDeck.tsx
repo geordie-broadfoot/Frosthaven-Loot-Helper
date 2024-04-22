@@ -4,7 +4,6 @@ import { RESOURCE, ResourceNames } from "../../consts/resources"
 import { Actions } from "../../context/actions"
 import { ALL_LOOT_CARDS } from "../../consts/cards"
 import { Counter } from "../elements/counter"
-import { CardColors } from "../loot/lootCard"
 
 export const BuildLootDeck = () => {
 	const { state, dispatch } = useAppState()
@@ -45,10 +44,9 @@ export const BuildLootDeck = () => {
 							}}
 							min={0}
 							max={maxNumber}
-							//color={state.options.colorCodeLootCards ? CardColors[type] : undefined}
-							//borderWidth={state.options.colorCodeLootCards ? 3 : 1}
 							borderWidth={1}
 							disabled={state.lootDeck.cards.length !== 0}
+							icon={type}
 						/>
 					)
 				})}

@@ -1,24 +1,10 @@
-import { Button } from "react-native"
 import { useAppState } from "../../context/AppContext"
-import { Actions } from "../../context/actions"
 import { Col, Container, Row, Txt } from "../elements"
 import { PlayerRow } from "./playerRow"
-import { useState } from "react"
 import { AddPlayerButton } from "./addPlayer"
 
-const defaultPlayers = [
-	{
-		id: 1,
-		name: "Player 1",
-	},
-	{
-		id: 2,
-		name: "Player 2",
-	},
-]
-
 export const PlayerSelect = () => {
-	const { state, dispatch } = useAppState()
+	const { state } = useAppState()
 
 	return (
 		<Container

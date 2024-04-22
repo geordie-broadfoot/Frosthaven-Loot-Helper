@@ -18,12 +18,17 @@ export const NoDeckWarning = () => {
 					onClick={() => {
 						dispatch(Actions.setScreen("deck"))
 					}}
+					borderWidth={1}
 				>
 					<Row alignItems="center" justifyContent="space-around" width="auto">
 						<Icon.AntDesign name="warning" color="black" size={48} />
 						<Col alignItems="center">
-							<Txt xs> It looks like the loot deck hasn't</Txt>
-							<Txt xs> been generated yet! </Txt>
+							<Txt xs fontWeight="bold">
+								It looks like the loot deck hasn't
+							</Txt>
+							<Txt xs fontWeight="bold">
+								been generated yet!
+							</Txt>
 						</Col>
 					</Row>
 				</Container>

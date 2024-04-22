@@ -1,8 +1,9 @@
 import React from "react"
 import { useAppState } from "../../context/AppContext"
 import { Col, Row, Txt } from "."
-import { ResourceNames } from "../../consts/resources"
+import { ResourceIcons, ResourceNames } from "../../consts/resources"
 import * as Icon from "@expo/vector-icons"
+import { Image } from "react-native"
 
 type CounterProps = {
 	name: string
@@ -14,6 +15,7 @@ type CounterProps = {
 	color?: string
 	borderWidth?: number
 	disabled?: boolean
+	icon?: any
 }
 
 export const Counter = ({
@@ -26,22 +28,38 @@ export const Counter = ({
 	color,
 	borderWidth,
 	disabled,
+	icon,
 }: CounterProps) => {
 	const btnSize = 35
 
 	return (
 		<Col
-			alignContent="stretch"
+			alignItems="center"
 			backgroundColor={"#ccc"}
-			padding={5}
+			paddingHorizontal={5}
+			paddingVertical={2}
 			borderRadius={10}
 			borderWidth={borderWidth || 1}
 			style={{ borderColor: color }}
+			width="35%"
 		>
-			<Txt xs fontWeight="500">
-				{name}
-			</Txt>
-			<Row alignItems="center" gap={15}>
+			<Row justifyContent="space-between" width="90%">
+				<Txt xs fontWeight="500">
+					{name}
+				</Txt>
+				{icon && (
+					<Image
+						source={ResourceIcons[icon]}
+						tintColor="#444"
+						style={{
+							width: 20,
+							height: 20,
+							borderRadius: 3,
+						}}
+					/>
+				)}
+			</Row>
+			<Row alignItems="center" justifyContent="center" width="100%">
 				<Icon.Feather
 					disabled={count <= min}
 					name="minus"
@@ -49,7 +67,9 @@ export const Counter = ({
 					size={btnSize}
 					onPress={() => !disabled && onCountDown()}
 				/>
-				<Txt lg>{count}</Txt>
+				<Txt lg width={30} textAlign="center">
+					{count}
+				</Txt>
 				<Icon.Feather
 					name="plus"
 					disabled={count >= max}

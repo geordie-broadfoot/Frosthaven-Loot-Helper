@@ -1,4 +1,5 @@
 import { ALL_LOOT_CARDS } from "../consts/cards"
+import { RESOURCE } from "../consts/resources"
 import { DrawResult, LootCard, Player } from "../consts/types"
 import { getUUID } from "../utils/uuid"
 
@@ -92,6 +93,13 @@ export type AppState = {
 		showUndrawnLoot: boolean
 		colorCodeLootCards: boolean
 		showIndividualLootCards: boolean
+		showRerollButton: boolean
+		useBasicMode: boolean
+		showLootNames: boolean
+
+		colors: {
+			[index: string]: string
+		}
 	}
 }
 
@@ -126,9 +134,27 @@ export const defaultAppState: AppState = {
 	options: {
 		1418: false,
 		1419: false,
+
 		showCardIds: false,
 		showUndrawnLoot: false,
 		colorCodeLootCards: false,
 		showIndividualLootCards: true,
+		showRerollButton: false,
+		useBasicMode: false,
+		showLootNames: true,
+
+		colors: {
+			[RESOURCE.gold]: "hsl(60, 70%, 45%)",
+			[RESOURCE.metal]: "hsl(40, 5%, 60%)",
+			[RESOURCE.logs]: "hsl(45, 40%, 40%)",
+			[RESOURCE.furs]: "hsl(45, 50%, 80%)",
+			[RESOURCE.arrowvine]: "hsl(120, 50%, 70%)",
+			[RESOURCE.axenut]: "hsl(90, 30%, 50%)",
+			[RESOURCE.corpsecap]: "hsl(160, 50%, 50%)",
+			[RESOURCE.flamefruit]: "hsl(20, 40%, 50%)",
+			[RESOURCE.rockroot]: "hsl(90, 15%, 50%)",
+			[RESOURCE.snowthistle]: "hsl(180, 50%, 70%)",
+			[RESOURCE.randomItem]: "hsl(280, 80%, 80%)",
+		},
 	},
 }

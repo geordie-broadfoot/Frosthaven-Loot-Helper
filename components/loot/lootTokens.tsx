@@ -2,6 +2,7 @@ import { useAppState } from "../../context/AppContext"
 import { Actions } from "../../context/actions"
 import { Col, Row, Txt } from "../elements"
 import { Counter } from "../elements/counter"
+import { NoDeckWarning } from "./noDeckWarning"
 
 export const LootTokensScreen = () => {
 	const { state, dispatch } = useAppState()
@@ -12,6 +13,8 @@ export const LootTokensScreen = () => {
 	return (
 		<Col gap={15} alignItems="center" paddingHorizontal={10}>
 			<Txt xxl>Loot Tokens</Txt>
+			<NoDeckWarning />
+
 			<Txt sm>Loot available: {availableLoot - totalLoot}</Txt>
 			{state.players.map((player) => {
 				return (

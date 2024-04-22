@@ -1,8 +1,6 @@
-import { Switch } from "react-native"
-import { Col, MainContent, Row, Txt } from "../elements"
+import { Col, MainContent, Row, Txt, Toggle } from "../elements"
 import { ClearStateButton } from "../homeScreen/clearState"
 import { useAppState } from "../../context/AppContext"
-import { Actions } from "../../context/actions"
 
 export const SettingsScreen = () => {
 	const { state } = useAppState()
@@ -35,28 +33,12 @@ export const SettingsScreen = () => {
 								: "Show individual loot cards"
 						}
 					/>
+					<Toggle name="useBasicMode" title="Basic view" />
+					<Toggle name="showRerollButton" title="Show Reroll button on Results screen" />
+					<Toggle name="showLootNames" title="Show resource names on loot" />
 				</Col>
 				<ClearStateButton />
 			</Col>
 		</MainContent>
-	)
-}
-
-type SwitchProps = {
-	name: any
-	title: string
-	invert?: boolean
-}
-export const Toggle = ({ name, title, invert = false }: SwitchProps) => {
-	const { state, dispatch } = useAppState()
-	return (
-		<Row
-			justifyContent="space-between"
-			alignItems="center"
-			onClick={() => dispatch(Actions.updateOption(name, !state.options[name]))}
-		>
-			<Switch value={invert ? !state.options[name] : state.options[name]} />
-			<Txt xs>{title}</Txt>
-		</Row>
 	)
 }
