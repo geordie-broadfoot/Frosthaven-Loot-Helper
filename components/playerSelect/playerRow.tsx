@@ -1,9 +1,8 @@
 import { Player } from "../../consts/types"
 import { Actions } from "../../context/actions"
 import * as Icon from "@expo/vector-icons"
-import { Row, Txt } from "../elements"
+import { Row } from "../elements"
 import { useAppState } from "../../context/AppContext"
-import { useRef, useState } from "react"
 import { TextInput } from "react-native"
 import { FontSizes } from "../elements/txt"
 
@@ -13,9 +12,7 @@ type Props = {
 }
 
 export const PlayerRow = ({ player, index }: Props) => {
-	const [nickname, setNickname] = useState(player.name)
-
-	const { state, dispatch } = useAppState()
+	const { dispatch } = useAppState()
 
 	return (
 		<Row width="auto" justifyContent="space-between" alignItems="center" key={player.id}>
@@ -29,9 +26,8 @@ export const PlayerRow = ({ player, index }: Props) => {
 					borderRadius: 10,
 				}}
 				defaultValue={player.name}
-				onChangeText={(text) => setNickname(text)}
-				onChange={() => {
-					dispatch(Actions.setNickname(player.id, nickname))
+				onChange={(e) => {
+					dispatch(Actions.setNickname(player.id, e.nativeEvent.text))
 				}}
 				selectTextOnFocus
 			/>

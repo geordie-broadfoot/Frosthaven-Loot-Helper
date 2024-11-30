@@ -1,7 +1,7 @@
 import React from "react"
 import { useAppState } from "../../context/AppContext"
 import { Col, Row, Txt } from "../elements"
-import { RESOURCE, ResourceIcons, ResourceNames } from "../../consts/resources"
+import { ResourceIcons, ResourceNames } from "../../consts/resources"
 import { Image } from "react-native"
 type Props = {
 	type: string
@@ -28,10 +28,8 @@ export const LootCard = ({ type, value, id, ids }: Props) => {
 					? state.options.colors?.[type]
 					: "hsl(200, 60%, 85%)"
 			}
-			paddingBottom={2}
-			paddingLeft={5}
-			paddingRight={5}
-			paddingTop={2}
+			paddingVertical={2}
+			paddingHorizontal={5}
 			borderRadius={3}
 		>
 			<Row justifyContent="space-between" alignItems="center">
