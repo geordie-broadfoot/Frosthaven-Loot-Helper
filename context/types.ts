@@ -1,5 +1,3 @@
-import { LootCard } from "../components/loot/lootCard"
-import { ALL_LOOT_CARDS } from "../consts/cards"
 import { RESOURCE } from "../consts/resources"
 import { CardBonus, DrawResult, LootCard, Player } from "../consts/types"
 import { getUUID } from "../utils/uuid"
@@ -35,7 +33,7 @@ export type SetPlayer = {
 }
 export type SetLootDeck = {
 	type: "set_loot_deck"
-	deck: (typeof LootCard)[]
+	deck: LootCard[]
 }
 export type SetDrawResults = {
 	type: "set_draw_results"
@@ -73,15 +71,15 @@ export type UpdatePlayer = {
 }
 export type SetUndrawnLoot = {
 	type: "set_undrawn_loot"
-	cards: (typeof LootCard)[]
+	cards: LootCard[]
 }
 
 export type AppState = {
 	players: Player[]
 	lootDeck: {
-		cards: (typeof LootCard)[]
+		cards: LootCard[]
 		composition: Record<RESOURCE, number>
-		undrawnCards: (typeof LootCard)[]
+		undrawnCards: LootCard[]
 		upgrades: Record<number, CardBonus[]>
 	}
 	drawResults: DrawResult[]
