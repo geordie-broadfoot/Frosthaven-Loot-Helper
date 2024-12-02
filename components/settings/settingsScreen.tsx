@@ -1,11 +1,14 @@
 import { Col, MainContent, Row, Txt, Toggle } from "../elements"
-import { ClearStateButton } from "../homeScreen/clearState"
+import { ClearStateButton } from "../loot/buttons/clearState"
 import { useAppState } from "../../context/AppContext"
+import { SCENARIOS } from "../../consts/scenarios"
 
 export const SettingsScreen = () => {
 	const { state } = useAppState()
 
 	const headerIndent = 20
+
+	console.log("SCENARIOS:", SCENARIOS)
 
 	return (
 		<MainContent>

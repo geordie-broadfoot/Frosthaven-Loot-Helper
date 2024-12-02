@@ -11,7 +11,7 @@ type Props = {
 
 const DisabledColor = "#aaa"
 
-export const Button = (props: Props | any) => {
+export const Button = (props: Props) => {
 	return (
 		<View
 			style={{

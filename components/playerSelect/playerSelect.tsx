@@ -14,10 +14,9 @@ export const PlayerSelect = () => {
 			flexBasis="auto"
 			flexWrap="nowrap"
 		>
-			<Txt xxl>Select Players</Txt>
 			<Row height={60} />
 			<Col gap={15} alignItems="stretch">
-				<Txt xxs>Tap to Rename</Txt>
+				<Txt xs>Tap to Rename</Txt>
 				{state.players.map((p, i) => (
 					<PlayerRow key={p.id} player={p} index={i} />
 				))}

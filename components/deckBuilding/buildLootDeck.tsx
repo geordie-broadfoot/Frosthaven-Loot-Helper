@@ -10,7 +10,6 @@ export const BuildLootDeck = () => {
 
 	return (
 		<Col alignContent="center" alignItems="center">
-			<Txt xxl>Build Loot Deck</Txt>
 			<Txt md>
 				Total loot:{" "}
 				{Object.values(state.lootDeck.composition).reduce((sum, v) => sum + v, 0)}
