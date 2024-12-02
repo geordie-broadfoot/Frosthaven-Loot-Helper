@@ -12,9 +12,7 @@ export type LootCard = {
 	type: RESOURCE
 
 	// Allow mapping of player count to resource value
-	value: {
-		[index: number]: number
-	}
+	value: Record<number, number>
 	special?: boolean
 }
 
@@ -23,4 +21,10 @@ export type Player = {
 	name: string
 	tokens: number
 	cards: LootCard[]
+}
+
+export type CardBonus = {
+	bonusType: string
+	resource: RESOURCE
+	value: number
 }

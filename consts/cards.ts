@@ -1,6 +1,7 @@
 import { RESOURCE } from "./resources"
 import { LootCard } from "./types"
 
+/** Definition used to generate the resource cards */
 const defaultResourceCards: LootCard[] = [
 	{
 		id: -1,
@@ -130,23 +131,27 @@ const lumberIndex = 1401
 const metalIndex = 1409
 const hideIndex = 1393
 
+/** Static definition of all base loot cards available in the game */
 export const ALL_LOOT_CARDS = {
 	[RESOURCE.gold]: goldCards,
 	[RESOURCE.logs]: defaultResourceCards.map((c, i) => ({
 		...c,
 		type: RESOURCE.logs,
 		id: lumberIndex + i,
-	})),
+		bonus: 0,
+	})) as LootCard[],
 	[RESOURCE.metal]: defaultResourceCards.map((c, i) => ({
 		...c,
 		type: RESOURCE.metal,
 		id: metalIndex + i,
-	})),
+		bonus: 0,
+	})) as LootCard[],
 	[RESOURCE.furs]: defaultResourceCards.map((c, i) => ({
 		...c,
 		type: RESOURCE.furs,
 		id: hideIndex + i,
-	})),
+		bonus: {},
+	})) as LootCard[],
 	[RESOURCE.arrowvine]: [
 		generateHerbCard(1381, RESOURCE.arrowvine),
 		generateHerbCard(1382, RESOURCE.arrowvine),
@@ -177,5 +182,5 @@ export const ALL_LOOT_CARDS = {
 			type: RESOURCE.randomItem,
 			value: { 2: 1, 3: 1, 4: 1 },
 		},
-	],
-}
+	] as LootCard[],
+} as const

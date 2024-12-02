@@ -1,6 +1,7 @@
+import { LootCard } from "../components/loot/lootCard"
 import { ALL_LOOT_CARDS } from "../consts/cards"
 import { RESOURCE } from "../consts/resources"
-import { DrawResult, LootCard, Player } from "../consts/types"
+import { CardBonus, DrawResult, LootCard, Player } from "../consts/types"
 import { getUUID } from "../utils/uuid"
 
 export type AppStateAction =
@@ -34,7 +35,7 @@ export type SetPlayer = {
 }
 export type SetLootDeck = {
 	type: "set_loot_deck"
-	deck: LootCard[]
+	deck: (typeof LootCard)[]
 }
 export type SetDrawResults = {
 	type: "set_draw_results"
@@ -72,17 +73,16 @@ export type UpdatePlayer = {
 }
 export type SetUndrawnLoot = {
 	type: "set_undrawn_loot"
-	cards: LootCard[]
+	cards: (typeof LootCard)[]
 }
 
 export type AppState = {
 	players: Player[]
 	lootDeck: {
-		cards: LootCard[]
-		composition: {
-			[index: string]: number
-		}
-		undrawnCards: LootCard[]
+		cards: (typeof LootCard)[]
+		composition: Record<RESOURCE, number>
+		undrawnCards: (typeof LootCard)[]
+		upgrades: Record<number, CardBonus[]>
 	}
 	drawResults: DrawResult[]
 	screen: string
@@ -97,9 +97,7 @@ export type AppState = {
 		useBasicMode: boolean
 		showLootNames: boolean
 
-		colors: {
-			[index: string]: string
-		}
+		colors: Record<RESOURCE, string>
 	}
 }
 
@@ -120,17 +118,25 @@ export const defaultAppState: AppState = {
 	],
 	lootDeck: {
 		cards: [],
-		composition: Object.keys(ALL_LOOT_CARDS).reduce(
-			(obj, t) => ({
-				...obj,
-				[t]: 0,
-			}),
-			{},
-		),
+		composition: {
+			gold: 0,
+			logs: 0,
+			furs: 0,
+			metal: 0,
+			arrowvine: 0,
+			axenut: 0,
+			corpsecap: 0,
+			flamefruit: 0,
+			rockroot: 0,
+			snowthistle: 0,
+			randomItem: 0,
+		},
 		undrawnCards: [],
+		upgrades: {},
 	},
 	drawResults: [],
-	screen: "players",
+	screen: "home",
+
 	options: {
 		1418: false,
 		1419: false,
