@@ -4,6 +4,7 @@ import { Col, Row, Txt } from "."
 import { ResourceIcons, ResourceNames } from "../../consts/resources"
 import * as Icon from "@expo/vector-icons"
 import { Image } from "react-native"
+import { useHaptics } from "../../utils/haptics"
 
 type CounterProps = {
 	name: string
@@ -30,6 +31,8 @@ export const Counter = ({
 	disabled,
 	icon,
 }: CounterProps) => {
+	const { buzz } = useHaptics()
+
 	const btnSize = 35
 
 	return (
@@ -65,7 +68,11 @@ export const Counter = ({
 					name="minus"
 					color={count <= min || disabled ? "grey" : "hsl(10, 70%, 60%)"}
 					size={btnSize}
-					onPress={() => !disabled && onCountDown()}
+					onPress={() => {
+						if (disabled) return
+						void buzz()
+						onCountDown()
+					}}
 				/>
 				<Txt lg width={30} textAlign="center">
 					{count}
@@ -75,7 +82,11 @@ export const Counter = ({
 					disabled={count >= max}
 					color={count >= max || disabled ? "grey" : "hsl(140, 90%, 40%)"}
 					size={btnSize}
-					onPress={() => !disabled && onCountUp()}
+					onPress={() => {
+						if (disabled) return
+						void buzz()
+						onCountUp()
+					}}
 				/>
 			</Row>
 		</Col>
