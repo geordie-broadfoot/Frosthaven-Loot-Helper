@@ -1,6 +1,6 @@
 import { Button } from "react-native"
-import { useAppState } from "../../context/AppContext"
-import { Actions } from "../../context/actions"
+import { useAppState } from "../../../context/AppContext"
+import { Actions } from "../../../context/actions"
 
 export const ClearStateButton = () => {
 	const { state, dispatch } = useAppState()

@@ -1,5 +1,6 @@
 import { useAppState } from "../../context/AppContext"
 import { Actions } from "../../context/actions"
+import { useKeyboardOpen } from "../../utils/useKeyboardOpen"
 import { Col, Container, Row, Txt } from "../elements"
 import * as Icon from "@expo/vector-icons"
 
@@ -12,6 +13,7 @@ type NavButtonProps = {
 
 export const NavBar = () => {
 	const { state, dispatch } = useAppState()
+	const keyboardOpen = useKeyboardOpen()
 
 	const NavButton = ({ title, icon, onClick, name }: NavButtonProps) => {
 		return (
@@ -29,9 +31,16 @@ export const NavBar = () => {
 		)
 	}
 
+	if (keyboardOpen) return <></>
+
 	const iconSize = 40
 	return (
 		<Row height={80} alignItems="stretch" width="100%">
+			<NavButton
+				title="Home"
+				name="home"
+				icon={<Icon.FontAwesome name="home" size={iconSize} color="black" />}
+			/>
 			<NavButton
 				title="Players"
 				name="players"
