@@ -29,6 +29,7 @@
 				"projectId": "07cc9453-5dd7-4a5c-8c54-3aa57501057b"
 			}
 		},
-		"owner": "geodude"
+		"owner": "geodude",
+		"newArchEnabled": true
 	}
 }
