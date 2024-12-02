@@ -84,11 +84,6 @@ export const NavBar = () => {
 					</Container>
 				}
 			/>
-			<NavButton
-				title="Options"
-				name="options"
-				icon={<Icon.Ionicons name="settings" size={iconSize} />}
-			/>
 		</Row>
 	)
 }

@@ -14,6 +14,8 @@ import {
 	UpdateOption,
 	UpdatePlayer,
 	SetUndrawnLoot,
+	OverrideProperty,
+	GoBack,
 } from "./types"
 
 export const Actions = {
@@ -54,6 +56,9 @@ export const Actions = {
 		type: "set_screen",
 		screen,
 	}),
+	goBack: (): GoBack => ({
+		type: "go_back",
+	}),
 	loadState: (state: AppState): LoadState => ({
 		type: "load_state",
 		state,
@@ -70,4 +75,9 @@ export const Actions = {
 		value,
 	}),
 	clearState: (): ClearState => ({ type: "clear_state" }),
+	overrideProperty: (property: keyof AppState, value: unknown): OverrideProperty => ({
+		type: "override_property",
+		property,
+		value,
+	}),
 }

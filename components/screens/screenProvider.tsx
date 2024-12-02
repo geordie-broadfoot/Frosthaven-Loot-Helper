@@ -6,12 +6,14 @@ import { BuildDeckScreen } from "../deckBuilding/buildDeckScreen"
 import { LootScreen } from "../loot/lootScreen"
 import { NavBar } from "../navBar/navBar"
 import { SettingsScreen } from "../settings/settingsScreen"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { HomeScreen } from "../homeScreen/homeScreen"
-import { Row, Txt } from "../elements"
+import { Button, Row, Txt } from "../elements"
+import * as Icon from "@expo/vector-icons"
+import { Actions } from "../../context/actions"
 
 const SCREENS = {
-	home: "Home",
+	home: "Frosthaven Loot Helper",
 	scenarios: "Scenarios",
 	options: "Settings",
 	deck: "Build a Deck",
@@ -29,10 +31,26 @@ export const ScreenProvider = () => {
 		}
 	}, 2000)
 
+	console.log("screen hist", state.screenHistory, state.screen)
+
 	const TitleBar = () => {
 		return (
-			<Row justifyContent="space-between">
+			<Row width="90%" justifyContent="space-between">
+				<Container>
+					{state.screen !== "home" && (
+						<Icon.FontAwesome
+							name="arrow-left"
+							size={24}
+							onPress={() => dispatch(Actions.goBack())}
+						/>
+					)}
+				</Container>
 				<Txt lg>{SCREENS[state.screen]}</Txt>
+				<Icon.FontAwesome
+					name="gear"
+					size={32}
+					onPress={() => dispatch(Actions.setScreen("options"))}
+				/>
 			</Row>
 		)
 	}
@@ -50,6 +68,12 @@ export const ScreenProvider = () => {
 			case "loot":
 			case "loot_result":
 				return <LootScreen />
+			case "upgrades":
+				return (
+					<>
+						<Txt xxl> Upgrades</Txt>
+					</>
+				)
 			case "options":
 				return <SettingsScreen />
 			default:
@@ -71,7 +95,7 @@ export const ScreenProvider = () => {
 		>
 			<TitleBar />
 			<Screen />
-			{!splash && <NavBar />}
+			{/* {!splash && <NavBar />} */}
 		</Container>
 	)
 }

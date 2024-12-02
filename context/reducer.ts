@@ -40,6 +40,20 @@ export const appReducer = (oldState: AppState, action: AppStateAction): AppState
 			break
 		case "set_screen":
 			state.screen = action.screen
+
+			if (action.screen === "home") state.screenHistory = ["home"]
+			else state.screenHistory = [...state.screenHistory, action.screen]
+			break
+
+		case "go_back":
+			if (state.screenHistory.length >= 2) {
+				state.screen = state.screenHistory.at(-2)
+				state.screenHistory = [...state.screenHistory.slice(0, -1)]
+			} else {
+				state.screen = "home"
+				state.screenHistory = ["home"]
+			}
+
 			break
 		case "load_state":
 			state = action.state
@@ -59,6 +73,8 @@ export const appReducer = (oldState: AppState, action: AppStateAction): AppState
 		case "set_undrawn_loot":
 			state.lootDeck.undrawnCards = action.cards
 			break
+		case "override_property":
+			state[action.property] = action.value as any
 	}
 
 	saveStateAsync(state)

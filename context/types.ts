@@ -9,6 +9,7 @@ export type AppStateAction =
 	| SetDrawResults
 	| ResetLootDeck
 	| SetScreen
+	| GoBack
 	| LoadState
 	| ClearState
 	| DeletePlayer
@@ -16,6 +17,7 @@ export type AppStateAction =
 	| UpdateOption
 	| UpdatePlayer
 	| SetUndrawnLoot
+	| OverrideProperty
 
 export type AddPlayer = {
 	type: "add_player"
@@ -46,6 +48,9 @@ export type SetScreen = {
 	type: "set_screen"
 	screen: string
 }
+export type GoBack = {
+	type: "go_back"
+}
 export type LoadState = {
 	type: "load_state"
 	state: AppState
@@ -73,6 +78,11 @@ export type SetUndrawnLoot = {
 	type: "set_undrawn_loot"
 	cards: LootCard[]
 }
+export type OverrideProperty = {
+	type: "override_property"
+	property: keyof AppState
+	value: unknown
+}
 
 export type AppState = {
 	players: Player[]
@@ -84,6 +94,7 @@ export type AppState = {
 	}
 	drawResults: DrawResult[]
 	screen: string
+	screenHistory: string[]
 	options: {
 		1418: boolean
 		1419: boolean
@@ -134,7 +145,7 @@ export const defaultAppState: AppState = {
 	},
 	drawResults: [],
 	screen: "home",
-
+	screenHistory: [],
 	options: {
 		1418: false,
 		1419: false,
